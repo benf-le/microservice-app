@@ -9,8 +9,16 @@ public class CreateBookCommand {
     private String author;
     private Boolean isReady;
 
-    public CreateBookCommand(String toString, String name, String author, boolean b) {
+
+//tạo ra contructor
+    public CreateBookCommand(String bookId, String name, String author, Boolean isReady) {
+        this.bookId = bookId;
+        this.name = name;
+        this.author = author;
+        this.isReady = isReady;
     }
+
+
 
     public String getBookId() {
         return bookId;
@@ -43,5 +51,4 @@ public class CreateBookCommand {
     public void setIsReady(Boolean isReady) {
         this.isReady = isReady;
     }
-}
 }

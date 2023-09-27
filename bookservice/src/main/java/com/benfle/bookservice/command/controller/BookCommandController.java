@@ -17,10 +17,11 @@ public class BookCommandController {
     @Autowired
     private CommandGateway commandGateway;
 
+//    gửi đi 1 command
     @PostMapping
-    public String addBook(@RequestBody BookRequestModel model){
+    public String addBook(@RequestBody BookRequestModel model) {
         CreateBookCommand command =
-                new CreateBookCommand(UUID.randomUUID().toString(), model.getName(), model.getAuthor(),true);
+                new CreateBookCommand(UUID.randomUUID().toString(), model.getName(), model.getAuthor(), true);
         commandGateway.sendAndWait(command);
         return "added Book";
 
