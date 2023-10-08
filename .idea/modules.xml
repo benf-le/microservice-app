@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/bookservice/bookservice.iml" filepath="$PROJECT_DIR$/bookservice/bookservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/discoveryserver/discoveryserver.iml" filepath="$PROJECT_DIR$/discoveryserver/discoveryserver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/front-end.iml" filepath="$PROJECT_DIR$/front-end.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/microservice-app.iml" filepath="$PROJECT_DIR$/.idea/microservice-app.iml" />
     </modules>
   </component>
