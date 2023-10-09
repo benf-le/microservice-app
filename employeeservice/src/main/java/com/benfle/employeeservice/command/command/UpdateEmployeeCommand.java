@@ -14,6 +14,8 @@ public class UpdateEmployeeCommand {
 
 //tạo ra contructor
     public UpdateEmployeeCommand(String employeeId, String firstName, String lastName, String kin, Boolean isDisciplined) {
+
+        super();
         this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;
