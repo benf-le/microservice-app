@@ -33,7 +33,6 @@ public class BookRequestModel {
     public Boolean getIsReady() {
         return isReady;
     }
-
     public void setIsReady(Boolean isReady) {
         this.isReady = isReady;
     }
