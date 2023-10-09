@@ -1,9 +1,7 @@
-package com.benfle.bookservice.command.aggregate;
+package com.benfle.employeeservice.command.aggregate;
 
 
-import com.benfle.bookservice.command.command.CreateBookCommand;
-import com.benfle.bookservice.command.event.BookCreateEnvent;
-import com.fasterxml.jackson.databind.util.BeanUtil;
+
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
@@ -12,7 +10,7 @@ import org.axonframework.spring.stereotype.Aggregate;
 import org.springframework.beans.BeanUtils;
 
 @Aggregate
-public class BookAggregate {
+public class EmployeeAggregate {
 
     @AggregateIdentifier
     private String bookId;
@@ -21,12 +19,12 @@ public class BookAggregate {
     private Boolean isReady;
 
 
-    public BookAggregate() {
+    public EmployeeAggregate() {
 
     }
 
     @CommandHandler
-    public BookAggregate(CreateBookCommand createBookCommand) {
+    public EmployeeAggregate(CreateBookCommand createBookCommand) {
 
 //        khởi tạo 1 cái event
         BookCreateEnvent bookCreateEnvent = new BookCreateEnvent();
@@ -36,7 +34,7 @@ public class BookAggregate {
         AggregateLifecycle.apply(bookCreateEnvent);
     }
 //    khi mà phát ra cái AggregateLifecycle.apply(bookCreateEnvent); thì nó sẽ nhảy vào hàm on
-//    hàm on: lấy data từ BookCreateEnvent thông qua event, sau đó cập nhật lại cho BookAggregate
+//    hàm on: lấy data từ BookCreateEnvent thông qua event, sau đó cập nhật lại cho EmployeeAggregate
     @EventSourcingHandler
     public void on(BookCreateEnvent event){
         this.bookId= event.getBookId();

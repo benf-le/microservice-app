@@ -1,25 +1,12 @@
-package com.benfle.employeeservice.command.command;
+package com.benfle.employeeservice.command.event;
 
-import org.axonframework.modelling.command.TargetAggregateIdentifier;
+public class EmployeeUpdateEvent {
 
-public class CreateEmployeeCommand {
-    @TargetAggregateIdentifier
     private String employeeId;
     private String firstName;
     private String lastName;
     private String kin;
     private Boolean isDisciplined;
-
-
-
-//tạo ra contructor
-    public CreateEmployeeCommand(String employeeId, String firstName, String lastName, String kin, Boolean isDisciplined) {
-        this.employeeId = employeeId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.kin = kin;
-        this.isDisciplined = isDisciplined;
-    }
 
     public String getEmployeeId() {
         return employeeId;

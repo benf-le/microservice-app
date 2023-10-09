@@ -1,6 +1,8 @@
 package com.benfle.employeeservice.command.controller;
 
 
+import com.benfle.employeeservice.command.command.CreateEmployeeCommand;
+import com.benfle.employeeservice.command.model.EmployeeRequestModel;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,14 +15,15 @@ import java.util.UUID;
 @RestController
 @RequestMapping("api/v1/employees")
 public class EmployeeCommandController {
+
     @Autowired
     private CommandGateway commandGateway;
 
 //    gửi đi 1 command
     @PostMapping
     public String addEmployee(@RequestBody EmployeeRequestModel model) {
-        CreateBookCommand command =
-                new CreateBookCommand(UUID.randomUUID().toString(), model.getName(), model.getAuthor(), true);
+        CreateEmployeeCommand command =
+                new CreateEmployeeCommand(UUID.randomUUID().toString(), model.getFirstName(), model.getLastName(), model.getKin(), false);
         commandGateway.sendAndWait(command);
         return "added Employee";
 

@@ -2,7 +2,7 @@ package com.benfle.employeeservice.command.command;
 
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
-public class CreateEmployeeCommand {
+public class UpdateEmployeeCommand {
     @TargetAggregateIdentifier
     private String employeeId;
     private String firstName;
@@ -13,7 +13,7 @@ public class CreateEmployeeCommand {
 
 
 //tạo ra contructor
-    public CreateEmployeeCommand(String employeeId, String firstName, String lastName, String kin, Boolean isDisciplined) {
+    public UpdateEmployeeCommand(String employeeId, String firstName, String lastName, String kin, Boolean isDisciplined) {
         this.employeeId = employeeId;
         this.firstName = firstName;
         this.lastName = lastName;

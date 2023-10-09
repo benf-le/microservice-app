@@ -15,7 +15,7 @@ public class BookEventHandler {
     @Autowired
     private EmployeeRepository employeeRepository;
 
-//    sau khi xử lý bên BookAggregate, tiếp tục nhảy qua bên class BookEventHandler, có hàm EventHandler  mapping class BookAggregate,
+//    sau khi xử lý bên EmployeeAggregate, tiếp tục nhảy qua bên class BookEventHandler, có hàm EventHandler  mapping class EmployeeAggregate,
     @EventHandler
     public void on(BookCreateEnvent event){
         Employee employee = new Employee();// khởi tạo 1 Employee Entity
