@@ -1,13 +1,7 @@
-package com.benfle.employeeservice.command.data;
+package com.benfle.employeeservice.query.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+public class EmployeeResponseModel {
 
-@Entity
-@Table(name = "employees")
-public class Employee {
-    @Id
     private String employeeId;
     private String firstName;
     private String lastName;
@@ -54,3 +48,4 @@ public class Employee {
         isDisciplined = disciplined;
     }
 }
+

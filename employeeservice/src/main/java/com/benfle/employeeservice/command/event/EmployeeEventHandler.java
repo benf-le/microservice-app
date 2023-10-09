@@ -1,7 +1,8 @@
 package com.benfle.employeeservice.command.event;
 
-import com.benfle.bookservice.command.data.Employee;
 
+
+import com.benfle.employeeservice.command.data.Employee;
 import com.benfle.employeeservice.command.data.EmployeeRepository;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.beans.BeanUtils;
@@ -10,9 +11,6 @@ import org.springframework.stereotype.Component;
 
 @Component // tự động phát
 public class EmployeeEventHandler {
-
-
-
     @Autowired
     private EmployeeRepository employeeRepository;
 
@@ -23,4 +21,26 @@ public class EmployeeEventHandler {
         BeanUtils.copyProperties(event, employee);
         employeeRepository.save(employee);
     }
+
+    @EventHandler
+    public void on(EmployeeUpdateEvent event) {
+        Employee employee = employeeRepository.getById(event.getEmployeeId());
+        employee.setFirstName(event.getFirstName());
+        employee.setLastName(event.getLastName());
+        employee.setKin(event.getKin());
+        employee.setDisciplined(event.getDisciplined());
+        employeeRepository.save(employee);
+    }
+
+    @EventHandler
+    public void on(EmployeeDeleteEvent event) {
+        try {
+            employeeRepository.deleteById(event.getEmployeeId());
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+        }
+
+    }
+
+
 }

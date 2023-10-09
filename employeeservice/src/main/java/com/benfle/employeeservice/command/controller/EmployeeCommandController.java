@@ -2,12 +2,11 @@ package com.benfle.employeeservice.command.controller;
 
 
 import com.benfle.employeeservice.command.command.CreateEmployeeCommand;
+import com.benfle.employeeservice.command.command.DeleteEmployeeCommand;
+import com.benfle.employeeservice.command.command.UpdateEmployeeCommand;
 import com.benfle.employeeservice.command.model.EmployeeRequestModel;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.UUID;
@@ -30,5 +29,19 @@ public class EmployeeCommandController {
         commandGateway.sendAndWait(command);
 
         return "emmployee added";
+    }
+
+    @PutMapping
+    public String updateEmployee(@RequestBody EmployeeRequestModel model) {
+        UpdateEmployeeCommand command =
+                new UpdateEmployeeCommand(model.getEmployeeId(),model.getFirstName(),model.getLastName(),model.getKin(),model.getDisciplined());
+        commandGateway.sendAndWait(command);
+        return "employee updated";
+    }
+    @DeleteMapping("/{employeeId}")
+    public String deleteEmployee(@PathVariable String employeeId) {
+        DeleteEmployeeCommand command = new DeleteEmployeeCommand(employeeId);
+        commandGateway.sendAndWait(command);
+        return "emmployee deleted";
     }
 }
