@@ -2,6 +2,12 @@ package com.benfle.employeeservice.command.aggregate;
 
 
 
+import com.benfle.employeeservice.command.command.CreateEmployeeCommand;
+import com.benfle.employeeservice.command.command.DeleteEmployeeCommand;
+import com.benfle.employeeservice.command.command.UpdateEmployeeCommand;
+import com.benfle.employeeservice.command.event.EmployeeCreateEvent;
+import com.benfle.employeeservice.command.event.EmployeeDeleteEvent;
+import com.benfle.employeeservice.command.event.EmployeeUpdateEvent;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
@@ -13,36 +19,54 @@ import org.springframework.beans.BeanUtils;
 public class EmployeeAggregate {
 
     @AggregateIdentifier
-    private String bookId;
-    private String name;
-    private String author;
-    private Boolean isReady;
+    private String employeeId;
+    private String firstName;
+    private String lastName;
+    private String kin;
+    private Boolean isDisciplined;
 
 
-    public EmployeeAggregate() {
+    public EmployeeAggregate(){}
 
+    @CommandHandler
+    public EmployeeAggregate(CreateEmployeeCommand command){
+        EmployeeCreateEvent event = new EmployeeCreateEvent();
+        BeanUtils.copyProperties(command, event);
+        AggregateLifecycle.apply(event);
     }
 
     @CommandHandler
-    public EmployeeAggregate(CreateBookCommand createBookCommand) {
-
-//        khởi tạo 1 cái event
-        BookCreateEnvent bookCreateEnvent = new BookCreateEnvent();
-//        copy all thuật tính của createBookCommand sang bookCreateEnvent, 2 cái đó dùng chung thuật tính nên dùng hàm đó
-        BeanUtils.copyProperties(createBookCommand, bookCreateEnvent);
-// apply cái event này
-        AggregateLifecycle.apply(bookCreateEnvent);
+    public void handle(UpdateEmployeeCommand command) {
+        EmployeeUpdateEvent event = new EmployeeUpdateEvent();
+        BeanUtils.copyProperties(command, event);
+        AggregateLifecycle.apply(event);
     }
-//    khi mà phát ra cái AggregateLifecycle.apply(bookCreateEnvent); thì nó sẽ nhảy vào hàm on
-//    hàm on: lấy data từ BookCreateEnvent thông qua event, sau đó cập nhật lại cho EmployeeAggregate
+    @CommandHandler
+    public void handle(DeleteEmployeeCommand command) {
+        EmployeeDeleteEvent event = new EmployeeDeleteEvent();
+        event.setEmployeeId(command.getEmployeeId());
+        AggregateLifecycle.apply(event);
+    }
+
     @EventSourcingHandler
-    public void on(BookCreateEnvent event){
-        this.bookId= event.getBookId();
-        this.author = event.getAuthor();
-        this.isReady = event.getIsReady();
-        this.name = event.getName();
+    public void on(EmployeeCreateEvent event){
+        this.employeeId = event.getEmployeeId();
+        this.firstName = event.getFirstName();
+        this.lastName = event.getLastName();
+        this.kin = event.getKin();
+        this.isDisciplined = event.getDisciplined();
     }
-
-
+    @EventSourcingHandler
+    public void on(EmployeeUpdateEvent event){
+        this.employeeId = event.getEmployeeId();
+        this.firstName = event.getFirstName();
+        this.lastName = event.getLastName();
+        this.kin = event.getKin();
+        this.isDisciplined = event.getDisciplined();
+    }
+    @EventSourcingHandler
+    public void on(EmployeeDeleteEvent event){
+        this.employeeId = event.getEmployeeId();
+      }
 
 }

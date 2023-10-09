@@ -13,19 +13,22 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("api/v1/employees")
+@RequestMapping("/api/v1/employees")
+
+
 public class EmployeeCommandController {
 
     @Autowired
-    private CommandGateway commandGateway;
+    private  CommandGateway commandGateway;
 
-//    gửi đi 1 command
+
     @PostMapping
     public String addEmployee(@RequestBody EmployeeRequestModel model) {
         CreateEmployeeCommand command =
-                new CreateEmployeeCommand(UUID.randomUUID().toString(), model.getFirstName(), model.getLastName(), model.getKin(), false);
-        commandGateway.sendAndWait(command);
-        return "added Employee";
+                new CreateEmployeeCommand(UUID.randomUUID().toString(),model.getFirstName(), model.getLastName(), model.getKin(), false);
 
+        commandGateway.sendAndWait(command);
+
+        return "emmployee added";
     }
 }
