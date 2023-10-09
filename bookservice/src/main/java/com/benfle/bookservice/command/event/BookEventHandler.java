@@ -17,9 +17,25 @@ public class BookEventHandler {
 
 //    sau khi xử lý bên BookAggregate, tiếp tục nhảy qua bên class BookEventHandler, có hàm EventHandler  mapping class BookAggregate,
     @EventHandler
-    public void on(BookCreateEnvent event){
+    public void on(BookCreateEvent event){
         Book book = new Book();// khởi tạo 1 Book Entity
         BeanUtils.copyProperties(event,book);
         bookRepository.save(book);
+    }
+
+    @EventHandler
+    public void on(BookUpdateEvent event){
+        Book book = bookRepository.getById(event.getBookId());
+        book.setAuthor(event.getAuthor());
+        book.setName(event.getName());
+        book.setIsReady(event.getIsReady());
+
+        bookRepository.save(book);
+    }
+
+    @EventHandler
+    public void on(BookDeleteEvent event){
+
+        bookRepository.deleteById(event.getBookId());
     }
 }
