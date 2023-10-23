@@ -10,9 +10,14 @@ import com.benfle.employeeservice.command.model.EmployeeRequestModel;
 
 
 import org.springframework.cloud.stream.annotation.EnableBinding;
+<<<<<<< Updated upstream
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.cloud.stream.messaging.Source;
 import com.fasterxml.jackson.core.JsonProcessingException;
+=======
+
+import org.springframework.cloud.stream.messaging.Source;
+>>>>>>> Stashed changes
 import org.springframework.messaging.MessageChannel;
 import org.springframework.web.bind.annotation.*;
 import org.axonframework.commandhandling.gateway.CommandGateway;
@@ -20,10 +25,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.UUID;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.messaging.support.MessageBuilder;
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 @RestController
 @RequestMapping("/api/v1/employees")
 @EnableBinding(Source.class)
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 public class EmployeeCommandController {
 
     @Autowired
@@ -32,7 +44,10 @@ public class EmployeeCommandController {
     @Autowired
     private MessageChannel output;
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
     @PostMapping
     public String addEmployee(@RequestBody EmployeeRequestModel model) {
@@ -61,7 +76,10 @@ public class EmployeeCommandController {
     @PostMapping("/sendMessage")
     public void SendMessage(@RequestBody String message) {
         try {
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
             ObjectMapper mapper = new ObjectMapper();
             String json = mapper.writeValueAsString(message);
             output.send(MessageBuilder.withPayload(json).build());
@@ -70,4 +88,8 @@ public class EmployeeCommandController {
             e.printStackTrace();
         }
     }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 }
