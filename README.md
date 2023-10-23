@@ -7,8 +7,8 @@ run program
 5. run class EmployeeserviceApplication, port 9002
 6. run class ApigatewayApplication, port 9000
 7. C:\kafka_2.13-3.6.0\bin\windows => cmd 
-     cmd => zookeeper-server-start.bat C:\kafka_2.13-3.6.0\config\zookeeper.properties
-     cmd => kafka-server-start.bat C:\kafka_2.13-3.6.0\config\server.properties
+     cmd => zookeeper-server-start.bat C:\kafka_2.13-3.2.0\config\zookeeper.properties
+     cmd => kafka-server-start.bat C:\kafka_2.13-3.2.0\config\server.properties
      cmd => kafka-topics.bat --create --topic your-name-topic --bootstrap-server localhost:9092
      cmd => kafka-topics.bat --list --bootstrap-server localhost:9092
     khi chạy code thì bật kafka-server-start.bat C:\kafka_2.13-3.6.0\config\server.properties
