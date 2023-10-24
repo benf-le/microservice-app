@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/discoveryserver/discoveryserver.iml" filepath="$PROJECT_DIR$/discoveryserver/discoveryserver.iml" />
       <module fileurl="file://$PROJECT_DIR$/employeeservice/employeeservice.iml" filepath="$PROJECT_DIR$/employeeservice/employeeservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/microservice-app.iml" filepath="$PROJECT_DIR$/.idea/microservice-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/notificationservice/notificationservice.iml" filepath="$PROJECT_DIR$/notificationservice/notificationservice.iml" />
     </modules>
   </component>
 </project>
