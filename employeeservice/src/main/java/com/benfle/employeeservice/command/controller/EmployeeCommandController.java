@@ -77,7 +77,7 @@ public class EmployeeCommandController {
             String json = mapper.writeValueAsString(message);
             output.send(MessageBuilder.withPayload(json).build());
         } catch (JsonProcessingException e) {
-
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
