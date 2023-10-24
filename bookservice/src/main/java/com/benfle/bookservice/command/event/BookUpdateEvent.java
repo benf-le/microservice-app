@@ -1,6 +1,7 @@
-package com.benfle.bookservice.command.model;
+package com.benfle.bookservice.command.event;
 
-public class BookRequestModel {
+public class BookUpdateEvent {
+
     private String bookId;
     private String name;
     private String author;
@@ -33,8 +34,9 @@ public class BookRequestModel {
     public Boolean getIsReady() {
         return isReady;
     }
+
     public void setIsReady(Boolean isReady) {
         this.isReady = isReady;
     }
-}
 
+}
