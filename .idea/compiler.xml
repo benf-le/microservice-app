@@ -18,12 +18,8 @@
       <module name="apigetateway" target="17" />
       <module name="bookservice" target="20" />
       <module name="discoveryserver" target="20" />
-
       <module name="employeeservice" target="17" />
-
-      <module name="employeeservice" target="20" />
       <module name="notificationservice" target="11" />
-
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
