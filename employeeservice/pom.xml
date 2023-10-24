@@ -14,11 +14,10 @@
 	<name>employeeservice</name>
 	<description>employeeservice</description>
 	<properties>
-<<<<<<< Updated upstream
+
 		<java.version>17</java.version>
-=======
-		<java.version>11</java.version>
->>>>>>> Stashed changes
+
+
 		<spring-cloud.version>2021.0.3</spring-cloud.version>
 	</properties>
 	<dependencies>
