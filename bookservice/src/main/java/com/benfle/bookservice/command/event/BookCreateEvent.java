@@ -1,6 +1,6 @@
 package com.benfle.bookservice.command.event;
 
-public class BookCreateEnvent {
+public class BookCreateEvent {
     private String bookId;
     private String name;
     private String author;

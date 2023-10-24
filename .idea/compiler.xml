@@ -6,22 +6,34 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="api-gateway" />
         <module name="employeeservice" />
-        <module name="bookservice" />
         <module name="discoveryserver" />
+        <module name="bookservice" />
+        <module name="notificationservice" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="api-gateway" target="17" />
+      <module name="apigetateway" target="17" />
       <module name="bookservice" target="20" />
       <module name="discoveryserver" target="20" />
+
       <module name="employeeservice" target="17" />
+
+      <module name="employeeservice" target="20" />
+      <module name="notificationservice" target="11" />
+
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="api-gateway" options="-parameters" />
+      <module name="apigetateway" options="-parameters" />
       <module name="bookservice" options="-parameters" />
       <module name="discoveryserver" options="-parameters" />
       <module name="employeeservice" options="-parameters" />
+      <module name="notificationservice" options="-parameters" />
     </option>
   </component>
 </project>

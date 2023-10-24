@@ -1,10 +1,25 @@
-package com.benfle.bookservice.command.model;
+package com.benfle.bookservice.command.command;
 
-public class BookRequestModel {
+import org.axonframework.modelling.command.TargetAggregateIdentifier;
+
+public class UpdateBookCommand {
+
+    @TargetAggregateIdentifier
     private String bookId;
     private String name;
     private String author;
     private Boolean isReady;
+
+
+    //tạo ra contructor
+    public UpdateBookCommand(String bookId, String name, String author, Boolean isReady) {
+        this.bookId = bookId;
+        this.name = name;
+        this.author = author;
+        this.isReady = isReady;
+    }
+
+
 
     public String getBookId() {
         return bookId;
@@ -33,8 +48,9 @@ public class BookRequestModel {
     public Boolean getIsReady() {
         return isReady;
     }
+
     public void setIsReady(Boolean isReady) {
         this.isReady = isReady;
     }
-}
 
+}
