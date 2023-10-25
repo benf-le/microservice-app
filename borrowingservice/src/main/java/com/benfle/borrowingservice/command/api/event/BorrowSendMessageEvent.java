@@ -1,9 +1,7 @@
 package com.benfle.borrowingservice.command.api.event;
 
 public class BorrowSendMessageEvent {
-
     private String id;
-
 
     private String employeeId;
     private String message;
@@ -13,6 +11,10 @@ public class BorrowSendMessageEvent {
         this.id = id;
         this.employeeId = employeeId;
         this.message = message;
+    }
+
+    public BorrowSendMessageEvent() {
+        super();
     }
 
     public String getId() {

@@ -37,10 +37,10 @@ public class BorrowCommandController {
 
         return "Book borrowing added";
     }
-    @PutMapping
-    public String updateBookReturn(@RequestBody BorrowRequestModel model) {
-//        UpdateBookReturnCommand command = new UpdateBookReturnCommand(borrowService.findIdBorrowing(model.getEmployeeId(), model.getBookId()), model.getBookId(),model.getEmployeeId(),new Date());
-//        commandGateway.sendAndWait(command);
-        return "Book returned";
-    }
+//    @PutMapping
+//    public String updateBookReturn(@RequestBody BorrowRequestModel model) {
+////        UpdateBookReturnCommand command = new UpdateBookReturnCommand(borrowService.findIdBorrowing(model.getEmployeeId(), model.getBookId()), model.getBookId(),model.getEmployeeId(),new Date());
+////        commandGateway.sendAndWait(command);
+//        return "Book returned";
+//    }
 }
