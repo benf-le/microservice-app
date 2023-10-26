@@ -7,6 +7,8 @@ import com.benfle.bookservice.command.command.UpdateBookCommand;
 import com.benfle.bookservice.command.event.BookCreateEvent;
 import com.benfle.bookservice.command.event.BookDeleteEvent;
 import com.benfle.bookservice.command.event.BookUpdateEvent;
+import com.benfle.commonservice.common.UpdateStatusBookCommand;
+import com.benfle.commonservice.event.BookUpdateStatusEvent;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
@@ -65,6 +67,22 @@ public class BookAggregate {
     }
 //    khi mà phát ra cái AggregateLifecycle.apply(bookCreateEnvent); thì nó sẽ nhảy vào hàm on
 //    hàm on: lấy data từ BookCreateEvent thông qua event, sau đó cập nhật lại cho BookAggregate
+
+
+    @CommandHandler
+    public void handle(UpdateStatusBookCommand command) {
+        BookUpdateStatusEvent event = new BookUpdateStatusEvent();
+        BeanUtils.copyProperties(command, event);
+        AggregateLifecycle.apply(event);
+    }
+    @EventSourcingHandler
+    public void on(BookUpdateStatusEvent event) {
+        this.bookId = event.getBookId();
+        this.isReady = event.getIsReady();
+    }
+
+
+
     @EventSourcingHandler
     public void on(BookCreateEvent event){
         this.bookId= event.getBookId();
