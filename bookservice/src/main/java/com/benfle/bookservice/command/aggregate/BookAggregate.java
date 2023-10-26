@@ -7,7 +7,9 @@ import com.benfle.bookservice.command.command.UpdateBookCommand;
 import com.benfle.bookservice.command.event.BookCreateEvent;
 import com.benfle.bookservice.command.event.BookDeleteEvent;
 import com.benfle.bookservice.command.event.BookUpdateEvent;
+import com.benfle.commonservice.common.RollBackStatusBookCommand;
 import com.benfle.commonservice.common.UpdateStatusBookCommand;
+import com.benfle.commonservice.event.BookRollBackStatusEvent;
 import com.benfle.commonservice.event.BookUpdateStatusEvent;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
@@ -42,33 +44,22 @@ public class BookAggregate {
     }
 //    khi mà phát ra cái AggregateLifecycle.apply(bookCreateEnvent); thì nó sẽ nhảy vào hàm on
 //    hàm on: lấy data từ BookCreateEvent thông qua event, sau đó cập nhật lại cho BookAggregate
-  @CommandHandler
+    @CommandHandler
     public void handle(UpdateBookCommand updateBookCommand) {
 
-//        khởi tạo 1 cái event
-        BookUpdateEvent bookUpdateEvent = new BookUpdateEvent();
-//        copy all thuật tính của createBookCommand sang bookCreateEnvent, 2 cái đó dùng chung thuật tính nên dùng hàm đó
-        BeanUtils.copyProperties(updateBookCommand, bookUpdateEvent);
-// apply cái event này
-        AggregateLifecycle.apply(bookUpdateEvent);
-    }
-//    khi mà phát ra cái AggregateLifecycle.apply(bookCreateEnvent); thì nó sẽ nhảy vào hàm on
-//    hàm on: lấy data từ BookCreateEvent thông qua event, sau đó cập nhật lại cho BookAggregate
-  @CommandHandler
-
+    BookUpdateEvent bookUpdatedEvent
+            = new BookUpdateEvent();
+    BeanUtils.copyProperties(updateBookCommand,bookUpdatedEvent);
+    AggregateLifecycle.apply(bookUpdatedEvent);
+}
+    @CommandHandler
     public void handle(DeleteBookCommand deleteBookCommand) {
 
-//        khởi tạo 1 cái event
-        BookDeleteEvent bookDeleteEvent = new BookDeleteEvent();
-//        copy all thuật tính của createBookCommand sang bookCreateEnvent, 2 cái đó dùng chung thuật tính nên dùng hàm đó
-        BeanUtils.copyProperties(deleteBookCommand, bookDeleteEvent);
-// apply cái event này
-        AggregateLifecycle.apply(bookDeleteEvent);
+        BookDeleteEvent deletedEvent
+                = new BookDeleteEvent();
+        BeanUtils.copyProperties(deleteBookCommand,deletedEvent);
+        AggregateLifecycle.apply(deletedEvent);
     }
-//    khi mà phát ra cái AggregateLifecycle.apply(bookCreateEnvent); thì nó sẽ nhảy vào hàm on
-//    hàm on: lấy data từ BookCreateEvent thông qua event, sau đó cập nhật lại cho BookAggregate
-
-
     @CommandHandler
     public void handle(UpdateStatusBookCommand command) {
         BookUpdateStatusEvent event = new BookUpdateStatusEvent();
@@ -80,29 +71,36 @@ public class BookAggregate {
         this.bookId = event.getBookId();
         this.isReady = event.getIsReady();
     }
-
-
-
     @EventSourcingHandler
-    public void on(BookCreateEvent event){
-        this.bookId= event.getBookId();
+    public void on(BookCreateEvent event) {
+        this.bookId = event.getBookId();
         this.author = event.getAuthor();
         this.isReady = event.getIsReady();
         this.name = event.getName();
     }
-
-    public void on(BookUpdateEvent event){
-        this.bookId= event.getBookId();
+    @EventSourcingHandler
+    public void on(BookUpdateEvent event) {
+        this.bookId = event.getBookId();
         this.author = event.getAuthor();
         this.isReady = event.getIsReady();
         this.name = event.getName();
     }
-
-    public void on(BookDeleteEvent event){
-        this.bookId= event.getBookId();
+    @EventSourcingHandler
+    public void on(BookDeleteEvent event) {
+        this.bookId = event.getBookId();
 
     }
-
+    @CommandHandler
+    public void handle(RollBackStatusBookCommand command) {
+        BookRollBackStatusEvent event = new BookRollBackStatusEvent();
+        BeanUtils.copyProperties(command, event);
+        AggregateLifecycle.apply(event);
+    }
+    @EventSourcingHandler
+    public void on(BookRollBackStatusEvent event) {
+        this.bookId = event.getBookId();
+        this.isReady = event.getIsReady();
+    }
 
 
 }
