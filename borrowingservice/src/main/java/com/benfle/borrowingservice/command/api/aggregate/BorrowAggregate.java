@@ -46,6 +46,9 @@ public class BorrowAggregate {
         this.id = event.getId();
 
     }
+
+
+
     @CommandHandler
     public void handle(DeleteBorrowCommand command) {
         BorrowDeletedEvent event = new BorrowDeletedEvent();
@@ -56,6 +59,10 @@ public class BorrowAggregate {
     public void on(BorrowDeletedEvent event) {
         this.id = event.getId();
     }
+
+
+
+
     @CommandHandler
     public void handle(SendMessageCommand command) {
         BorrowSendMessageEvent event = new BorrowSendMessageEvent();
@@ -68,6 +75,10 @@ public class BorrowAggregate {
         this.message = event.getMessage();
         this.employeeId = event.getEmployeeId();
     }
+
+
+
+
     @CommandHandler
     public void handle(UpdateBookReturnCommand command) {
         BorrowingUpdateBookReturnEvent event = new BorrowingUpdateBookReturnEvent();
