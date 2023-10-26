@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/api-gateway/api-gateway.iml" filepath="$PROJECT_DIR$/api-gateway/api-gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/bookservice/bookservice.iml" filepath="$PROJECT_DIR$/bookservice/bookservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/borrowingservice/borrowingservice.iml" filepath="$PROJECT_DIR$/borrowingservice/borrowingservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/commonservice/commonservice.iml" filepath="$PROJECT_DIR$/commonservice/commonservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/discoveryserver/discoveryserver.iml" filepath="$PROJECT_DIR$/discoveryserver/discoveryserver.iml" />
       <module fileurl="file://$PROJECT_DIR$/employeeservice/employeeservice.iml" filepath="$PROJECT_DIR$/employeeservice/employeeservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/microservice-app.iml" filepath="$PROJECT_DIR$/.idea/microservice-app.iml" />

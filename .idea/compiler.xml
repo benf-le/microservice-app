@@ -7,6 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="commonservice" />
         <module name="api-gateway" />
         <module name="borrowingservice" />
         <module name="employeeservice" />
@@ -20,6 +21,7 @@
       <module name="apigetateway" target="17" />
       <module name="bookservice" target="20" />
       <module name="borrowingservice" target="11" />
+      <module name="commonservice" target="17" />
       <module name="discoveryserver" target="20" />
       <module name="employeeservice" target="11" />
       <module name="notificationservice" target="17" />
@@ -31,6 +33,7 @@
       <module name="apigetateway" options="-parameters" />
       <module name="bookservice" options="-parameters" />
       <module name="borrowingservice" options="-parameters" />
+      <module name="commonservice" options="-parameters" />
       <module name="discoveryserver" options="-parameters" />
       <module name="employeeservice" options="-parameters" />
       <module name="notificationservice" options="-parameters" />
